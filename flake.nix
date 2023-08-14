@@ -1,7 +1,7 @@
 {
-  inputs.nixpkgs.url = github:NixOS/nixpkgs/nixos-unstable;
+  inputs.nixpkgs.url = "github:NixOS/nixpkgs/nixos-unstable";
 
-  inputs.disko.url = github:nix-community/disko/make-disk-image;
+  inputs.disko.url = "github:nix-community/disko";
   inputs.disko.inputs.nixpkgs.follows = "nixpkgs";
 
   inputs.nixos-anywhere.url = "github:numtide/nixos-anywhere";
@@ -26,6 +26,10 @@
             efiSupport = true;
             efiInstallAsRemovable = true;
           };
+          # Alternative to grub
+          #boot.loader.systemd-boot.enable = true;
+          # when installing toggle this
+          #boot.loader.efi.canTouchEfiVariables = false;
         }
       ];
     };

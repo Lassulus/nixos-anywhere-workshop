@@ -1,19 +1,23 @@
 # Example to create a bios compatible gpt partition
-{ lib, ... }: {
+{ lib, config, ... }: {
   disko.devices.disk = {
     one = {
+      # Change this device name match your block device.
+      # The `lsblk` command can help you here
       device = lib.mkDefault "/dev/sda";
       type = "disk";
       content = {
         type = "gpt";
-        partitions = {
-          boot = {
-            name = "boot";
-            size = "1M";
-            type = "EF02";
-          };
+        partitions = lib.optionalAttrs config.boot.loader.grub.enable
+          {
+            boot = {
+              name = "boot";
+              size = "1M";
+              type = "EF02";
+            };
+          } // {
           ESP = {
-            size = "100M";
+            size = "500M";
             type = "EF00";
             content = {
               type = "filesystem";
