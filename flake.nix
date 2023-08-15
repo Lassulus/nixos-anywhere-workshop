@@ -22,6 +22,7 @@
         disko.nixosModules.disko
         ./disk-configs/simple-efi.nix # choose your favorite disk layout here
         #./disk-configs/zfs.nix # choose your favorite disk layout here
+        #./disk-configs/luks-lvm.nix # choose your favorite disk layout here
         {
           boot.loader.grub = {
             efiSupport = true;
