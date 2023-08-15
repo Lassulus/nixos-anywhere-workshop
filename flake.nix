@@ -21,11 +21,13 @@
         (nixpkgs.outPath + "/nixos/modules/installer/scan/not-detected.nix")
         disko.nixosModules.disko
         ./disk-configs/simple-efi.nix # choose your favorite disk layout here
+        #./disk-configs/zfs.nix # choose your favorite disk layout here
         {
           boot.loader.grub = {
             efiSupport = true;
             efiInstallAsRemovable = true;
           };
+          boot.swraid.enable = true;
           # Alternative to grub
           #boot.loader.systemd-boot.enable = true;
           # when installing toggle this
