@@ -1,5 +1,5 @@
 # Example to create a bios compatible gpt partition
-{ lib, config, ... }: {
+{ lib, ... }: {
   disko.devices.disk = {
     one = {
       # Change this device name match your block device.
@@ -8,14 +8,12 @@
       type = "disk";
       content = {
         type = "gpt";
-        partitions = lib.optionalAttrs config.boot.loader.grub.enable
-          {
-            boot = {
-              name = "boot";
-              size = "1M";
-              type = "EF02";
-            };
-          } // {
+        partitions = {
+          boot = {
+            name = "boot";
+            size = "1M";
+            type = "EF02";
+          };
           ESP = {
             size = "500M";
             type = "EF00";
